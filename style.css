@@ -7,7 +7,8 @@ body {
   min-height: 100vh;
   margin: 0;
 }
- 
+
+/* form container */
 .container {
   background-color: #fff;
   padding: 20px 30px;
@@ -15,22 +16,26 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 400px;
 }
- 
+
+/* form header */
 h1 {
   text-align: center;
   color: #333;
 }
- 
+
+/* div with each individual label, input, error message, and small */
 .form-group {
   margin-bottom: 15px;
 }
- 
+
+/* input label styling */
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
- 
+
+/* input field styling */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
@@ -40,27 +45,48 @@ h1 {
   border-radius: 4px;
   box-sizing: border-box; /* Makes width calculation easier */
 }
- 
-.form-group input:user-invalid {
-  border-color: #e74c3c; /* Light red for invalid built-in states */
+
+/* styling offset for general focus of input */
+.form-group input:focus, 
+.form-group input:focus-visible {
+  outline: 2px solid #333;  
+  outline-offset: 2px;  
 }
-/* You can add a .valid class if you want to style valid inputs too */
+
+/* styling for invalid & valid states if conditions are met while typing*/
+.form-group input.invalid {
+  border: 1.5px solid #e74c3c;
+}
+.form-group input.valid {
+  border: 1.5px solid rgb(131, 199, 30);
+}
+/* focus states override for valid and invalid input once user types */
+.form-group input.invalid:focus-visible, 
+.form-group input.invalid:focus {
+  border: 1.5px solid #e74c3c;
+}
+.form-group input.valid:focus-visible, 
+.form-group input.valid:focus {
+  border: 1.5px solid rgb(131, 199, 30);
+}
  
 .form-group .error-message {
   display: block;
-  color: #e74c3c; /* Red for error messages */
+  color: #e74c3c;
   font-size: 0.9em;
   margin-top: 5px;
   min-height: 1em; /* Reserve space to prevent layout shifts */
 }
- 
+
+ /*message under password and username   */
 .form-group small {
     display: block;
     font-size: 0.8em;
     color: #777;
-    margin-top: 3px;
+    margin-top: 6px;
 }
  
+/* button styling */
 button[type="submit"] {
   width: 100%;
   padding: 10px;
@@ -74,4 +100,10 @@ button[type="submit"] {
  
 button[type="submit"]:hover {
   background-color: #2980b9;
+}
+
+/* button focus */
+button:focus, button:focus-visible {
+  outline: 2px solid #333;  
+  outline-offset: 2px;
 }
