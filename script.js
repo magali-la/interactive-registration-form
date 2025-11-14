@@ -11,6 +11,30 @@ let emailError = document.getElementById('emailError');
 let passwordError = document.getElementById('passwordError');
 let confirmPasswordError = document.getElementById('confirmPasswordError');
 
+// handle form submission
+registrationForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    // if every input is valid, give user alert 
+    if (usernameInput.validity.valid && emailInput.validity.valid && passwordInput.validity.valid && confirmPasswordInput.validity.valid){
+        alert("Everything is valid, Form submitted and username saved! Refresh the page.");
+        // store the username in local storage and refresh the page or remove all inputs
+        localStorage.setItem('username', usernameInput.value);
+        registrationForm.reset();
+    } else {
+        alert("Please fill out invalid fields!");
+    }
+});
+
+// handle local storage and retrieve username once the page loads
+window.addEventListener("load", () => {
+    let savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+        alert("Your username was saved!");
+        usernameInput.value = savedUsername;
+    };
+});
+
 // event listener if the input is clicked
 let usernameClicked = false;
 
@@ -197,7 +221,7 @@ confirmPasswordInput.addEventListener("blur", (event) => {
             confirmPasswordInput.classList.remove('valid');
             confirmPasswordInput.classList.add('invalid');
             confirmPasswordError.innerText = 'Password does not match'
-        } else if (confirmPasswordInput.valueMissing){
+        } else if (confirmPasswordInput.validity.valueMissing){
             confirmPasswordInput.classList.remove('valid');
             confirmPasswordInput.classList.add('invalid');
             confirmPasswordError.innerText = 'Password confirmation required'
