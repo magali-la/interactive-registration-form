@@ -95,4 +95,120 @@ emailInput.addEventListener("input", (event) => {
     }
 });
 
+// add blur event listener so user is alerted when they move from the input field without a valid email 
+emailInput.addEventListener("blur", (event) => {
+    // run everything only if the username has focus
+    if (emailClicked === true) {
+        if (emailInput.validity.valueMissing){
+            // add the invalid class and remove valid
+            emailInput.classList.add('invalid');
+            emailInput.classList.remove('valid');
+            emailError.innerText = "Email required";
+        } else if (emailInput.validity.typeMismatch){
+            emailInput.classList.add('invalid');
+            emailInput.classList.remove('valid');
+            emailError.innerText = "Email invalid";
+        } else {
+            emailInput.classList.add('valid');
+            emailInput.classList.remove('invalid');
+            emailError.innerText = '';
+        }
+    } else {
+        // if it's false exit the event listener
+        return;
+    }
+});
+
+// password section
+let passwordClicked = false;
+
+passwordInput.addEventListener("focus", () => {
+    passwordClicked = true;
+})
+
+passwordInput.addEventListener("input", (event) => {
+    if (passwordClicked == true){
+        if (passwordInput.validity.patternMismatch){
+            passwordInput.classList.add('invalid');
+            passwordInput.classList.remove('valid');
+            passwordError.innerText = 'Password does not meet all requirements';
+        } else if (passwordInput.validity.valueMissing){
+            passwordInput.classList.add('invalid');
+            passwordInput.classList.remove('valid');
+            passwordError.innerText = 'Password required'; 
+        } else {
+            passwordInput.classList.add('valid');
+            passwordInput.classList.remove('invalid');
+            passwordError.innerText = '';
+        }
+    } else {
+        return;
+    };
+});
+
+passwordInput.addEventListener("blur", (event) => {
+    if (passwordClicked == true){
+        if (passwordInput.validity.patternMismatch){
+            passwordInput.classList.add('invalid');
+            passwordInput.classList.remove('valid');
+            passwordError.innerText = 'Password does not meet all requirements';
+        } else if (passwordInput.validity.valueMissing){
+            passwordInput.classList.add('invalid');
+            passwordInput.classList.remove('valid');
+            passwordError.innerText = 'Password required'; 
+        } else {
+            passwordInput.classList.add('valid');
+            passwordInput.classList.remove('invalid');
+            passwordError.innerText = '';
+        }
+    } else {
+        return;
+    };
+});
+
+let confirmClicked = false;
+confirmPasswordInput.addEventListener("focus", () => {
+    confirmClicked = true;
+});
+
+confirmPasswordInput.addEventListener("input", (event) => {
+    if (confirmClicked == true) {
+        if (confirmPasswordInput.value !== passwordInput.value){
+            confirmPasswordInput.classList.remove('valid');
+            confirmPasswordInput.classList.add('invalid');
+            confirmPasswordError.innerText = 'Password does not match'
+        } else if (confirmPasswordInput.validity.valueMissing){
+            confirmPasswordInput.classList.remove('valid');
+            confirmPasswordInput.classList.add('invalid');
+            confirmPasswordError.innerText = 'Password confirmation required'
+        } else {
+            confirmPasswordInput.classList.remove('invalid');
+            confirmPasswordInput.classList.add('valid');
+            confirmPasswordError.innerText = '';
+        }
+    } else {
+        return;
+    }
+});
+
+confirmPasswordInput.addEventListener("blur", (event) => {
+    if (confirmClicked == true) {
+        if (confirmPasswordInput.value !== passwordInput.value){
+            confirmPasswordInput.classList.remove('valid');
+            confirmPasswordInput.classList.add('invalid');
+            confirmPasswordError.innerText = 'Password does not match'
+        } else if (confirmPasswordInput.valueMissing){
+            confirmPasswordInput.classList.remove('valid');
+            confirmPasswordInput.classList.add('invalid');
+            confirmPasswordError.innerText = 'Password confirmation required'
+        } else {
+            confirmPasswordInput.classList.remove('invalid');
+            confirmPasswordInput.classList.add('valid');
+            confirmPasswordError.innerText = '';
+        }
+    } else {
+        return;
+    }
+});
+
 
