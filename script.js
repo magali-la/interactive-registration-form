@@ -62,3 +62,37 @@ usernameInput.addEventListener("blur", (event) => {
         return;
     }
 });
+
+// email section
+// event listener if the input is clicked
+let emailClicked = false;
+
+emailInput.addEventListener("focus", () => {
+    emailClicked = true;
+});
+
+// event listener for username input field
+emailInput.addEventListener("input", (event) => {
+    // run everything only if the username has focus
+    if (emailClicked === true) {
+        if (emailInput.validity.valueMissing){
+            // add the invalid class and remove valid
+            emailInput.classList.add('invalid');
+            emailInput.classList.remove('valid');
+            emailError.innerText = "Email required";
+        } else if (emailInput.validity.typeMismatch){
+            emailInput.classList.add('invalid');
+            emailInput.classList.remove('valid');
+            emailError.innerText = "Email invalid";
+        } else {
+            emailInput.classList.add('valid');
+            emailInput.classList.remove('invalid');
+            emailError.innerText = '';
+        }
+    } else {
+        // if it's false exit the event listener
+        return;
+    }
+});
+
+
